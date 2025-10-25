@@ -23,10 +23,9 @@ const Progression = () => {
 
   return (
     
-    <div className="w-full bg-gray-50 h-screen p-6 shadow-inner">
+    <div className="w-full bg-gray-100 h-auto md:h-screen p-6 shadow-inner">
       <h2 className="text-xl font-bold mb-6">Progress Overview</h2>
 
-      {/* Progress Bar */}
       <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
         <div
           className="bg-green-500 h-4 rounded-full transition-all duration-500"

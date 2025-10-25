@@ -64,13 +64,12 @@ const TaskList = () => {
         <button
           onClick={() => setShowAddTask(true)}
           className="bg-gradient-to-r from-purple-300 to-purple-600 cursor-pointer
-            text-black p-2 rounded-lg w-1/6 hover:from-purple-300 hover:to-blue-600 transition-all"
+            text-black py-2 px-3 rounded-lg md:w-1/6 hover:from-purple-300 hover:to-blue-600 transition-all"
         >
           Add Task
         </button>
       </div>
 
-      {/* Task list display */}
       {tasks.length === 0 ? (
         <p className="text-gray-500 text-center">No tasks available.</p>
       ) : (

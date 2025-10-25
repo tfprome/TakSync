@@ -75,7 +75,7 @@ const Kanbanboard = () => {
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                  className={`flex-1 w-1/3 shadow-lg rounded-2xl p-4 flex flex-col ${statusColors[status]}`}
+                  className={`flex-1 w-full md:w-1/3 shadow-lg rounded-2xl p-4 flex flex-col ${statusColors[status]}`}
 
                 >
                   <h3 className="text-xl font-semibold mb-3 text-center border-b pb-2">
