@@ -24,12 +24,12 @@ const initialState:AuthState={
 }
 
 export const signupUser=createAsyncThunk("auth/signup", async (data:{name:string,email:string,password:string})=>
-        { const res=await axios.post('http://localhost:5000/auth/signup',data)
+        { const res=await axios.post('https://taksync.onrender.com/auth/signup',data)
             return res.data;}
 )
 
 export const loginUser=createAsyncThunk("auth/login",async(data:{email:string,password:string})=>{
-     const res=await axios.post('http://localhost:5000/auth/login',data)
+     const res=await axios.post('https://taksync.onrender.com/auth/login',data)
      return res.data
 })
 

@@ -30,22 +30,22 @@ const GetauthHeader =()=>{
 }
 
 export const addtask=createAsyncThunk('task/add',async(data:Task)=>{
-    const res=await axios.post('http://localhost:5000/addtask',data,GetauthHeader() )
+    const res=await axios.post('https://taksync.onrender.com/addtask',data,GetauthHeader() )
     return res.data;
 });
 
 export const fetchtask=createAsyncThunk('task/fetch',async()=>{
-    const res=await axios.get('http://localhost:5000/readtask',GetauthHeader())
+    const res=await axios.get('https://taksync.onrender.com/readtask',GetauthHeader())
     return res.data;
 });
 
 export const updatetask=createAsyncThunk('task/update',async({id,data}:{id:string;data:Partial<Task>})=>{
-    const res=await axios.put(`http://localhost:5000/updatetask/${id}`,data,GetauthHeader())
+    const res=await axios.put(`https://taksync.onrender.com/updatetask/${id}`,data,GetauthHeader())
     return res.data;
 });
 
 export const deletetask=createAsyncThunk('task/delete',async(id:string)=>{
-    await axios.delete(`http://localhost:5000/deletetask/${id}`,GetauthHeader())
+    await axios.delete(`https://taksync.onrender.com/deletetask/${id}`,GetauthHeader())
     return id;
 });
 
