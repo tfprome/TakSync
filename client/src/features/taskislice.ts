@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 export interface Task{
    _id?:string;
    title:string;
@@ -21,23 +22,30 @@ const initialState: TaskState ={
     error:null
 }
 
+const GetauthHeader =()=>{
+    const token=localStorage.getItem('token')
+    return{
+        headers:{Authorization:`Bearer ${token}`}
+    }
+}
+
 export const addtask=createAsyncThunk('task/add',async(data:Task)=>{
-    const res=await axios.post('http://localhost:5000/addtask',data)
+    const res=await axios.post('http://localhost:5000/addtask',data,GetauthHeader() )
     return res.data;
 });
 
 export const fetchtask=createAsyncThunk('task/fetch',async()=>{
-    const res=await axios.get('http://localhost:5000/readtask')
+    const res=await axios.get('http://localhost:5000/readtask',GetauthHeader())
     return res.data;
 });
 
 export const updatetask=createAsyncThunk('task/update',async({id,data}:{id:string;data:Partial<Task>})=>{
-    const res=await axios.put(`http://localhost:5000/updatetask/${id}`,data)
+    const res=await axios.put(`http://localhost:5000/updatetask/${id}`,data,GetauthHeader())
     return res.data;
 });
 
 export const deletetask=createAsyncThunk('task/delete',async(id:string)=>{
-    await axios.delete(`http://localhost:5000/deletetask/${id}`)
+    await axios.delete(`http://localhost:5000/deletetask/${id}`,GetauthHeader())
     return id;
 });
 

@@ -2,23 +2,28 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../app/store";
 import { addtask } from "../features/taskislice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddTaskForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const navigate=useNavigate();
 
   const handleAdd = () => {
-    if (!title.trim()) return alert("Please enter a task title");
+    if (!title.trim()) return toast.warning("Please enter a task title");
 
     dispatch(addtask({ title, desc, status: "to-do" }));
     setTitle("");
     setDesc("");
+    toast.success("Task added successfully")
+    navigate('/home/tasklist')
   };
 
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md mb-6">
-      <h2 className="text-2xl font-semibold text-center mb-4">📝 Add Task</h2>
+      <h2 className="text-2xl font-semibold text-center mb-4">Add Task</h2>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -33,7 +38,8 @@ const AddTaskForm = () => {
       />
       <button
         onClick={handleAdd}
-        className="bg-blue-600 text-white py-2 rounded-lg w-full hover:bg-blue-700 transition"
+        className="bg-gradient-to-r from-purple-300 to-purple-600 cursor-pointer
+          text-black py-2 rounded-lg w-full hover:from-purple-300 hover:to-blue-600 transition-all"
       >
         Add Task
       </button>

@@ -1,20 +1,40 @@
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import AddTaskForm from "./components/AddTask";
-import TaskList from "./components/TaskList";
+import { BrowserRouter, Routes,Route } from "react-router-dom";
+import LoginForm from "./components/login";
+import SignupForm from "./components/signup";
+import Home from "./components/Home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Kanbanboard from "./components/Kanbanboard";
+import TaskList from "./components/Tasklist";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10">
-        <h1 className="text-4xl font-bold mb-10">Task Manager</h1>
+     <div>
+        <BrowserRouter>
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="colored"
+        />
 
-        <div className="flex flex-row items-start justify-center gap-8 w-full  p-6">
-          <div className="pt-7">
-             <AddTaskForm/>
-          </div>
-          <TaskList />
-        </div>
+         <Routes>
+           <Route path="/home" element={<Home/>}>
+             <Route path="tasklist" element={<TaskList/>}></Route>
+             <Route path="kanban" element={<Kanbanboard/>}></Route>
+           </Route>
+
+        <Route path="/" element={<LoginForm/>}></Route>
+         <Route path="/signup" element={<SignupForm/>}></Route>
+         </Routes>
+        </BrowserRouter>
       </div>
     </Provider>
   );
